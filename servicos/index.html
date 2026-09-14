@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serviços | Lucas Blanchard — Beleza, Imagem & Produção</title>
+<meta name="description" content="Conheça os serviços e experiências Blanchard: maquiagem profissional, penteado, Ondas Giselle, Beauty Waves e produções completas de beleza e imagem em São Paulo.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --black:#0b0b0a;
+    --ink:#171613;
+    --off-white:#f3efe8;
+    --white:#fffdf9;
+    --stone:#c9c2b4;
+    --stone-dim:#8a8377;
+    --stone-dark:#6e675c;
+    --line-on-dark: rgba(243,239,232,0.16);
+    --line-on-light: rgba(23,22,19,0.12);
+    --serif: 'Fraunces', serif;
+    --sans: 'Archivo', sans-serif;
+    --ease: cubic-bezier(.16,.8,.24,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:auto;}
+  body{
+    background:var(--off-white);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;border:none;background:none;cursor:pointer;}
+
+  .container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px);}
+
+  /* ============ TYPE ============ */
+  .display{
+    font-family:var(--serif);
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:0.98;
+  }
+  .display.italic{font-style:italic;font-weight:400;}
+
+  .label{
+    font-family:var(--sans);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stone-dim);
+    font-weight:500;
+  }
+
+  /* ============ REVEAL ============ */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease), transform 1.1s var(--ease);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-img{clip-path:inset(0 0 0 0);}
+  .reveal-img .img-wrap{clip-path:inset(100% 0 0 0);transition:clip-path 1.3s var(--ease);}
+  .reveal-img.in .img-wrap{clip-path:inset(0 0 0 0);}
+  .img-wrap{overflow:hidden;position:relative;background:var(--black);}
+  .img-wrap img{transition:transform 1.6s var(--ease);transform:scale(1.08);}
+  .reveal-img.in .img-wrap img{transform:scale(1);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal-img, .img-wrap, .img-wrap img, .reveal .img-wrap{transition:none !important;transform:none !important;opacity:1 !important;clip-path:none !important;}
+  }
+
+  /* ============ HEADER ============ */
+  header.site-header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px clamp(20px,5vw,64px);
+    mix-blend-mode:difference;
+    color:#fff;
+  }
+  .logo-mark{
+    font-family:var(--serif);
+    font-size:19px;
+    letter-spacing:0.04em;
+  }
+  nav.primary-nav{display:none;gap:36px;align-items:center;}
+  nav.primary-nav a{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;position:relative;padding-bottom:3px;}
+  nav.primary-nav a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;
+    transition:width .5s var(--ease);
+  }
+  nav.primary-nav a:hover::after{width:100%;}
+  .ig-chip{font-size:12px;letter-spacing:0.06em;}
+
+  .menu-btn{display:flex;flex-direction:column;gap:5px;width:26px;z-index:210;}
+  .menu-btn span{display:block;height:1px;background:currentColor;width:100%;transition:transform .4s var(--ease), opacity .3s var(--ease);}
+  .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-btn.active span:nth-child(2){opacity:0;}
+  .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  @media (min-width:900px){
+    nav.primary-nav{display:flex;}
+    .menu-btn{display:none;}
+  }
+
+  .mobile-menu{
+    position:fixed;inset:0;background:var(--black);z-index:200;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 32px;
+    transform:translateY(-100%);
+    transition:transform .7s var(--ease);
+  }
+  .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu a{
+    font-family:var(--serif);color:var(--off-white);font-size:clamp(36px,10vw,56px);
+    display:block;padding:10px 0;border-bottom:1px solid var(--line-on-dark);
+  }
+  .mobile-menu .mm-ig{margin-top:28px;font-family:var(--sans);font-size:13px;letter-spacing:0.08em;color:var(--stone);text-transform:uppercase;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;height:100svh;min-height:640px;
+    display:flex;align-items:flex-end;
+    color:var(--off-white);
+    overflow:hidden;
+  }
+  .hero .img-wrap{position:absolute;inset:0;}
+  .hero .img-wrap img{transform:scale(1.12);}
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(11,11,10,0.15) 0%, rgba(11,11,10,0.08) 35%, rgba(11,11,10,0.78) 100%);
+  }
+  .hero-content{position:relative;z-index:2;width:100%;padding:0 clamp(20px,5vw,64px) clamp(48px,7vw,88px);}
+  .hero-eyebrow{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone);margin-bottom:18px;}
+  .hero h1{font-size:clamp(40px,7.4vw,92px);max-width:15ch;}
+  .hero p{
+    margin-top:22px;max-width:38ch;font-size:15.5px;line-height:1.6;color:var(--stone);
+  }
+  .scroll-indicator{
+    position:absolute;bottom:28px;left:clamp(20px,5vw,64px);z-index:2;
+    display:flex;align-items:center;gap:10px;color:var(--stone);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .scroll-line{width:1px;height:34px;background:var(--stone);position:relative;overflow:hidden;}
+  .scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--off-white);animation:scrollmove 2.2s ease-in-out infinite;}
+  @keyframes scrollmove{0%{top:-100%;}50%{top:0;}100%{top:100%;}}
+
+  /* ============ INTRO ============ */
+  .intro{padding:clamp(90px,14vw,168px) 0 clamp(70px,10vw,120px);}
+  .intro-grid{display:grid;grid-template-columns:1fr;gap:36px;}
+  .intro h2{font-size:clamp(28px,4vw,40px);max-width:12ch;}
+  .intro-text p{font-size:16px;line-height:1.75;color:var(--stone-dark);max-width:46ch;}
+  .intro-text p + p{margin-top:18px;}
+  @media (min-width:860px){
+    .intro-grid{grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start;}
+  }
+
+  /* ============ SERVICES SECTION ============ */
+  .services-head{padding:0 0 clamp(40px,6vw,72px);}
+  .services-head h2{font-size:clamp(34px,6vw,64px);}
+
+  .service{
+    display:grid;grid-template-columns:1fr;
+    border-top:1px solid var(--line-on-light);
+  }
+  .service:last-child{border-bottom:1px solid var(--line-on-light);}
+
+  .service-media{position:relative;min-height:56vw;max-height:640px;}
+  .service-media .img-wrap{height:100%;position:absolute;inset:0;}
+
+  .service-body{
+    padding:clamp(40px,6vw,64px) clamp(20px,5vw,64px);
+    display:flex;flex-direction:column;justify-content:center;
+    gap:20px;
+  }
+  .service-num{font-family:var(--serif);font-size:15px;color:var(--stone-dim);letter-spacing:0.04em;}
+  .service-body h3{font-size:clamp(30px,4.4vw,46px);max-width:12ch;}
+  .service-sig{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--stone-dark);}
+  .service-body p{font-size:15.5px;line-height:1.75;color:var(--stone-dark);max-width:52ch;}
+  .service-body p + p{margin-top:2px;}
+
+  .price-row{display:flex;gap:clamp(24px,5vw,56px);margin-top:8px;flex-wrap:wrap;}
+  .price-item .label{margin-bottom:6px;}
+  .price-item .amount{font-family:var(--serif);font-size:26px;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;
+    font-size:12.5px;letter-spacing:0.1em;text-transform:uppercase;
+    border:1px solid currentColor;
+    width:fit-content;margin-top:10px;
+    transition:background .45s var(--ease), color .45s var(--ease);
+  }
+  .btn-dark{color:var(--black);}
+  .btn-dark:hover{background:var(--black);color:var(--off-white);}
+  .btn-light{color:var(--off-white);}
+  .btn-light:hover{background:var(--off-white);color:var(--black);}
+
+  @media (min-width:900px){
+    .service{grid-template-columns:1.1fr 0.9fr;min-height:70vh;}
+    .service.flip{grid-template-columns:0.9fr 1.1fr;}
+    .service.flip .service-media{order:2;}
+    .service.flip .service-body{order:1;}
+    .service-media{min-height:auto;max-height:none;}
+  }
+
+  /* ============ EXPERIENCES ============ */
+  .experiences{background:var(--black);color:var(--off-white);padding:clamp(90px,14vw,160px) 0 clamp(70px,10vw,120px);}
+  .experiences-head{text-align:left;max-width:640px;margin-bottom:clamp(56px,9vw,100px);}
+  .experiences-head .label{color:var(--stone);}
+  .experiences-head h2{font-size:clamp(36px,6.4vw,68px);margin-top:16px;}
+  .experiences-head .sub{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--stone);margin-top:18px;}
+
+  .package{
+    border-top:1px solid var(--line-on-dark);
+    padding:clamp(48px,7vw,80px) 0;
+    display:grid;grid-template-columns:1fr;gap:34px;
+  }
+  .package:last-of-type{border-bottom:1px solid var(--line-on-dark);}
+  .package.featured{background:rgba(243,239,232,0.035);}
+
+  .package-left h3{font-size:clamp(32px,5vw,52px);}
+  .package-left p.desc{margin-top:16px;font-size:15.5px;line-height:1.75;color:var(--stone);max-width:44ch;}
+  .package-note{margin-top:14px;font-size:14px;line-height:1.6;color:var(--stone-dim);max-width:44ch;font-style:italic;font-family:var(--serif);}
+
+  .package-list{display:flex;flex-direction:column;}
+  .package-list .item{
+    padding:16px 0;border-bottom:1px solid var(--line-on-dark);
+    font-size:14px;letter-spacing:0.06em;text-transform:uppercase;color:var(--off-white);
+  }
+  .package-list .item:first-child{border-top:1px solid var(--line-on-dark);}
+
+  .package-right{display:flex;flex-direction:column;gap:22px;}
+  .package .price-item .amount{color:var(--off-white);}
+  .package .price-item .label{color:var(--stone);}
+
+  @media (min-width:900px){
+    .package{grid-template-columns:1fr 0.8fr 0.9fr;gap:48px;align-items:center;}
+  }
+
+  /* ============ COMPARISON ============ */
+  .compare{padding:clamp(80px,12vw,140px) 0;}
+  .compare-head{margin-bottom:clamp(40px,6vw,64px);}
+  .compare-head h2{font-size:clamp(28px,4.4vw,42px);max-width:14ch;}
+  .compare-grid{display:grid;grid-template-columns:1fr;gap:1px;background:var(--line-on-light);}
+  .compare-col{background:var(--off-white);padding:clamp(32px,4.5vw,48px);}
+  .compare-col.premium{background:var(--black);color:var(--off-white);}
+  .compare-col h4{font-family:var(--serif);font-size:26px;margin-bottom:22px;}
+  .compare-col ul{list-style:none;display:flex;flex-direction:column;gap:0;}
+  .compare-col li{
+    padding:13px 0;border-top:1px solid var(--line-on-light);
+    font-size:14.5px;color:var(--stone-dark);
+  }
+  .compare-col.premium li{border-top:1px solid var(--line-on-dark);color:var(--stone);}
+  .compare-col li:last-child{border-bottom:1px solid var(--line-on-light);}
+  .compare-col.premium li:last-child{border-bottom:1px solid var(--line-on-dark);}
+  .compare-col li.new{color:var(--ink);font-weight:500;}
+  .compare-col.premium li.new{color:var(--off-white);}
+
+  @media (min-width:820px){
+    .compare-grid{grid-template-columns:1fr 1fr;}
+    .compare-col.premium{padding-top:clamp(48px,6vw,72px);padding-bottom:clamp(48px,6vw,72px);}
+  }
+
+  /* ============ MINIMAL INFO SECTIONS ============ */
+  .info-section{padding:clamp(64px,9vw,100px) 0;border-top:1px solid var(--line-on-light);}
+  .info-grid{display:grid;grid-template-columns:1fr;gap:24px;}
+  .info-grid h2{font-size:clamp(22px,3vw,28px);}
+  .info-grid .info-text p{font-size:15px;line-height:1.75;color:var(--stone-dark);max-width:52ch;}
+  .info-grid .info-text p + p{margin-top:14px;}
+  .info-grid .info-text .final-note{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);}
+  @media (min-width:860px){
+    .info-grid{grid-template-columns:0.7fr 1.3fr;gap:48px;}
+  }
+
+  .important-section{background:var(--stone);background:#e9e2d3;padding:clamp(56px,8vw,88px) 0;}
+  .important-section .info-grid h2{color:var(--ink);}
+
+  /* ============ BOOKING ============ */
+  .booking{padding:clamp(80px,12vw,140px) 0;background:var(--off-white);}
+  .booking-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  .booking-text p{font-size:15px;line-height:1.8;color:var(--stone-dark);max-width:52ch;}
+  .booking-text p + p{margin-top:14px;}
+  .booking-numbers{display:flex;gap:clamp(32px,6vw,72px);align-items:flex-end;}
+  .bn-num{font-family:var(--serif);font-size:clamp(56px,9vw,110px);line-height:0.9;}
+  .bn-label{margin-top:10px;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone-dim);}
+  @media (min-width:900px){
+    .booking-grid{grid-template-columns:1fr 1fr;align-items:center;}
+  }
+
+  /* ============ FINAL CTA ============ */
+  .final-cta{
+    position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;color:var(--off-white);overflow:hidden;
+  }
+  .final-cta .img-wrap{position:absolute;inset:0;}
+  .final-cta::after{content:'';position:absolute;inset:0;background:rgba(11,11,10,0.56);}
+  .final-cta-content{position:relative;z-index:2;padding:0 24px;}
+  .final-cta h2{font-size:clamp(38px,7vw,84px);}
+  .final-cta p{margin-top:20px;font-size:16px;color:var(--stone);}
+  .final-cta .cta-btns{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:40px;}
+  @media (min-width:600px){.final-cta .cta-btns{flex-direction:row;justify-content:center;}}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--black);color:var(--stone);padding:32px clamp(20px,5vw,64px);
+    display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;
+    font-size:12px;letter-spacing:0.04em;
+  }
+  @media (min-width:700px){footer{flex-direction:row;justify-content:space-between;text-align:left;}}
+</style>
+</head>
+<body>
+
+<!-- ============ CONFIG ============ -->
+<script>
+  // EDITE AQUI o número real de WhatsApp do Lucas (formato internacional, apenas números)
+  window.BLANCHARD_CONFIG = {
+    whatsappNumber: "5511900000000", // <-- placeholder, substituir pelo número real
+    whatsappMessage: "Olá, Lucas! Vim pelo site e gostaria de consultar a disponibilidade para uma produção."
+  };
+</script>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <a href="/" class="logo-mark">BLANCHARD</a>
+  <nav class="primary-nav">
+    <a href="/">Portfólio</a>
+    <a href="/servicos">Serviços</a>
+    <a href="#agendamento">Contato</a>
+    <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="ig-chip">@lucasblanchard_</a>
+  </nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/">Portfólio</a>
+  <a href="/servicos">Serviços</a>
+  <a href="#agendamento">Contato</a>
+  <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="mm-ig">@lucasblanchard_</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="img-wrap"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">Serviços</div>
+    <h1 class="display reveal">Uma experiência de beleza, imagem e produção.</h1>
+    <p class="reveal">Produções desenvolvidas de forma personalizada para valorizar identidade, presença e estética.</p>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-line"></span>
+    <span>Role</span>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section class="intro">
+  <div class="container intro-grid">
+    <h2 class="display reveal">Beauty · Image · Production</h2>
+    <div class="intro-text">
+      <p class="reveal">Cada produção Blanchard é pensada de forma individual, considerando identidade, traços, estilo, ocasião, iluminação e resultado desejado.</p>
+      <p class="reveal">Mais do que maquiagem ou cabelo, cada atendimento é construído para criar uma imagem completa, sofisticada e atemporal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="services-head container">
+  <h2 class="display reveal">Serviços</h2>
+</section>
+
+<div id="services">
+
+  <!-- 01 MAQUIAGEM -->
+  <article class="service">
+    <div class="service-media reveal-img">
+      <div class="img-wrap"></div>
+    </div>
+    <div class="service-body">
+      <span class="service-num reveal">01</span>
+      <h3 class="display reveal">Maquiagem Profissional</h3>
+      <p class="reveal">Maquiagem personalizada, desenvolvida a partir da identidade, dos traços e dos objetivos de cada cliente.</p>
+      <p class="reveal">Mais do que uma produção de beleza, trata-se de um trabalho construído com olhar estético, atenção aos detalhes e compreensão do que melhor valoriza cada rosto.</p>
+      <p class="reveal">Cada maquiagem é planejada de forma exclusiva, considerando estilo pessoal, vestuário, ocasião, iluminação e resultado desejado, proporcionando um acabamento refinado, elegante e harmonioso.</p>
+      <p class="reveal">O objetivo é revelar a melhor versão de cada cliente, com uma beleza sofisticada, atemporal e impecável tanto presencialmente quanto em fotografias e vídeos.</p>
+      <div class="price-row reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 500</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 550</div></div>
+      </div>
+      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
+    </div>
+  </article>
+
+  <!-- 02 PENTEADO -->
+  <article class="service flip">
+    <div class="service-media reveal-img">
+      <div class="img-wrap"></div>
+    </div>
+    <div class="service-body">
+      <span class="service-num reveal">02</span>
+      <h3 class="display reveal">Penteado</h3>
+      <p class="reveal">Penteados desenvolvidos de forma personalizada para complementar a maquiagem e valorizar a imagem como um todo.</p>
+      <p class="reveal">Cada escolha é pensada de acordo com os traços, estilo, vestuário e proposta da produção, buscando equilíbrio, elegância e harmonia visual.</p>
+      <p class="reveal">O resultado é uma finalização sofisticada, com movimento, leveza e acabamento refinado, capaz de realçar a beleza natural e fortalecer a presença da cliente em qualquer ocasião.</p>
+      <div class="price-row reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 300</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 350</div></div>
+      </div>
+      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
+    </div>
+  </article>
+
+  <!-- 03 ONDAS GISELLE -->
+  <article class="service">
+    <div class="service-media reveal-img">
+      <div class="img-wrap"></div>
+    </div>
+    <div class="service-body">
+      <span class="service-num reveal">03</span>
+      <h3 class="display reveal">Ondas Giselle</h3>
+      <span class="service-sig reveal">Modelagem autoral Blanchard.</span>
+      <p class="reveal">Ondas amplas, estruturadas e sofisticadas, inspiradas na estética das grandes produções de moda e concursos de beleza.</p>
+      <p class="reveal">Ideal para quem busca um visual elegante, marcante e com maior estrutura, proporcionando presença e refinamento em cada detalhe.</p>
+      <div class="price-row reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
+      </div>
+      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
+    </div>
+  </article>
+
+  <!-- 04 BEAUTY WAVES -->
+  <article class="service flip">
+    <div class="service-media reveal-img">
+      <div class="img-wrap"></div>
+    </div>
+    <div class="service-body">
+      <span class="service-num reveal">04</span>
+      <h3 class="display reveal">Beauty Waves</h3>
+      <span class="service-sig reveal">Modelagem exclusiva Blanchard.</span>
+      <p class="reveal">Ondas suaves, texturizadas e com movimento natural, inspiradas na estética dos editoriais contemporâneos e do luxo descomplicado.</p>
+      <p class="reveal">Ideal para quem busca um visual leve, moderno e sofisticado, com efeito praiano refinado e acabamento natural.</p>
+      <div class="price-row reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
+      </div>
+      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
+    </div>
+  </article>
+
+</div>
+
+<!-- ============ EXPERIENCES ============ -->
+<section class="experiences">
+  <div class="container">
+    <div class="experiences-head">
+      <span class="label reveal">Experiências Blanchard</span>
+      <h2 class="display reveal">Quando beleza, imagem e movimento se encontram.</h2>
+    </div>
+
+    <!-- PRODUÇÃO BLANCHARD -->
+    <div class="package">
+      <div class="package-left">
+        <h3 class="display reveal">Produção Blanchard</h3>
+        <p class="desc reveal">Experiência completa de beleza e imagem, desenvolvida para valorizar identidade, presença e estética de forma sofisticada.</p>
+      </div>
+      <ul class="package-list reveal">
+        <li class="item">Maquiagem</li>
+        <li class="item">Penteado, Ondas Giselle ou Beauty Waves</li>
+        <li class="item">Produção fotográfica profissional</li>
+        <li class="item">08 fotos profissionais tratadas</li>
+      </ul>
+      <div class="package-right reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 990</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 1.150</div></div>
+        <a href="#" class="btn btn-light whatsapp-btn">Quero minha produção</a>
+      </div>
+    </div>
+
+    <!-- BLANCHARD PREMIUM -->
+    <div class="package featured">
+      <div class="package-left">
+        <h3 class="display reveal">Blanchard Premium</h3>
+        <p class="desc reveal">Produção premium desenvolvida para quem busca uma imagem refinada, com direção estética e conteúdo visual de alto impacto.</p>
+        <p class="package-note reveal">Vídeo conceitual profissional desenvolvido para transformar a produção em uma experiência visual completa.</p>
+      </div>
+      <ul class="package-list reveal">
+        <li class="item">Maquiagem</li>
+        <li class="item">Penteado, Ondas Giselle ou Beauty Waves</li>
+        <li class="item">Produção fotográfica profissional</li>
+        <li class="item">12 fotos profissionais tratadas</li>
+        <li class="item">01 Fashion Film</li>
+      </ul>
+      <div class="package-right reveal">
+        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 1.150</div></div>
+        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 1.400</div></div>
+        <a href="#" class="btn btn-light whatsapp-btn">Quero viver essa experiência</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="compare container">
+  <div class="compare-head">
+    <h2 class="display reveal">Produção Blanchard ou Blanchard Premium.</h2>
+  </div>
+  <div class="compare-grid reveal">
+    <div class="compare-col">
+      <h4>Produção Blanchard</h4>
+      <ul>
+        <li>Maquiagem</li>
+        <li>Cabelo</li>
+        <li>Fotografia</li>
+        <li>08 fotos tratadas</li>
+      </ul>
+    </div>
+    <div class="compare-col premium">
+      <h4>Blanchard Premium</h4>
+      <ul>
+        <li>Maquiagem</li>
+        <li>Cabelo</li>
+        <li>Fotografia</li>
+        <li class="new">12 fotos tratadas</li>
+        <li class="new">Fashion Film</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATENDIMENTO & DESLOCAMENTO ============ -->
+<section class="info-section">
+  <div class="container info-grid">
+    <h2 class="display reveal">Atendimento & deslocamento</h2>
+    <div class="info-text reveal">
+      <p>Valores válidos para São Paulo – Capital.</p>
+      <p>Para atendimentos a domicílio, será cobrada taxa de deslocamento de R$ 200, referente aos custos de transporte e logística do atendimento.</p>
+      <p>Atendimentos realizados no interior de São Paulo, em outros estados ou países possuem orçamento específico, definido de acordo com localização, deslocamento e logística necessária.</p>
+      <p class="final-note">Valores sob consulta.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IMPORTANTE ============ -->
+<section class="important-section">
+  <div class="container info-grid">
+    <h2 class="display reveal">Importante</h2>
+    <div class="info-text reveal">
+      <p>Este portfólio refere-se exclusivamente a produções sociais.</p>
+      <p>Produções para noivas e debutantes possuem estrutura, planejamento e investimento específicos, devendo ser consultadas separadamente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AGENDAMENTO & RESERVA ============ -->
+<section class="booking" id="agendamento">
+  <div class="container booking-grid">
+    <div>
+      <h2 class="display reveal" style="font-size:clamp(28px,4.4vw,42px); max-width:12ch; margin-bottom:22px;">Agendamento & reserva</h2>
+      <div class="booking-text reveal">
+        <p>Os atendimentos estão sujeitos à disponibilidade de agenda e devem ser previamente confirmados.</p>
+        <p>Para reserva de data e horário, é necessário o pagamento antecipado de 50% do valor total da produção. Os 50% restantes deverão ser pagos no dia do atendimento.</p>
+        <p>Em caso de desistência por parte da cliente, o valor da reserva não será devolvido, permanecendo como crédito para utilização futura mediante disponibilidade de agenda.</p>
+        <p>Em caso de cancelamento por iniciativa do profissional, o valor pago será devolvido integralmente.</p>
+      </div>
+    </div>
+    <div class="booking-numbers reveal">
+      <div>
+        <div class="bn-num display" data-target="50">0</div>
+        <div class="bn-label">Reserva da data</div>
+      </div>
+      <div>
+        <div class="bn-num display" data-target="50">0</div>
+        <div class="bn-label">Pagamento no dia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="img-wrap"></div>
+  <div class="final-cta-content">
+    <h2 class="display reveal">Sua próxima produção começa aqui.</h2>
+    <p class="reveal">Agende seu atendimento e descubra a experiência Blanchard.</p>
+    <div class="cta-btns reveal">
+      <a href="#" class="btn btn-light whatsapp-btn">Agendar pelo WhatsApp</a>
+      <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="btn btn-light">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <span>BLANCHARD — Beleza · Imagem · Produção</span>
+  <span>São Paulo, Brasil</span>
+  <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener">@lucasblanchard_</a>
+</footer>
+
+<script>
+  // WhatsApp links
+  (function(){
+    var cfg = window.BLANCHARD_CONFIG;
+    var url = "https://wa.me/" + cfg.whatsappNumber + "?text=" + encodeURIComponent(cfg.whatsappMessage);
+    document.querySelectorAll('.whatsapp-btn').forEach(function(el){
+      el.setAttribute('href', url);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    });
+  })();
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', function(){
+    menuBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menuBtn.classList.remove('active');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Reveal on scroll
+  var revealEls = document.querySelectorAll('.reveal, .reveal-img');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // Stagger children reveal within services/paragraph blocks
+  document.querySelectorAll('.service-body, .booking-numbers > div, .package-right').forEach(function(group){
+    var children = group.querySelectorAll('.reveal');
+    children.forEach(function(el, i){ el.style.transitionDelay = (i * 70) + 'ms'; });
+  });
+
+  // Animated count-up for 50% / 50%
+  var bnNums = document.querySelectorAll('.bn-num');
+  var counted = false;
+  var bnIo = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting && !counted){
+        counted = true;
+        bnNums.forEach(function(el){
+          var target = parseInt(el.getAttribute('data-target'), 10);
+          var start = 0;
+          var duration = 1100;
+          var startTime = null;
+          function step(ts){
+            if(!startTime) startTime = ts;
+            var progress = Math.min((ts - startTime) / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target) + '%';
+            if(progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+    });
+  }, {threshold:0.4});
+  if(bnNums.length){ bnIo.observe(bnNums[0].closest('.booking-numbers')); }
+
+  // Subtle parallax on hero + final CTA image
+  var parallaxTargets = document.querySelectorAll('.hero .img-wrap img, .final-cta .img-wrap img');
+  function onScroll(){
+    var y = window.scrollY;
+    parallaxTargets.forEach(function(img){
+      var rect = img.closest('section').getBoundingClientRect();
+      if(rect.bottom > 0 && rect.top < window.innerHeight){
+        var offset = (window.scrollY - img.closest('section').offsetTop) * 0.08;
+        img.style.transform = 'translateY(' + Math.max(-40, Math.min(40, offset)) + 'px) scale(1.12)';
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Header contrast handling not needed (mix-blend-mode:difference handles it)
+</script>
+
+</body>
+</html>
