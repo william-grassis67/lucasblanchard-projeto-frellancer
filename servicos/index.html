@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Serviços | Lucas Blanchard — Beleza, Imagem & Produção</title>
 <meta name="description" content="Conheça os serviços e experiências Blanchard: maquiagem profissional, penteado, Ondas Giselle, Beauty Waves e produções completas de beleza e imagem em São Paulo.">
+<meta name="theme-color" content="#0b0b0a">
+<meta property="og:title" content="Serviços Blanchard | Beleza, Imagem & Produção">
+<meta property="og:description" content="Beleza real em alta definição. Conheça os serviços, produções e valores Blanchard em São Paulo.">
+<meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +31,7 @@
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:auto;}
+  html{scroll-behavior:smooth;scroll-padding-top:80px;}
   body{
     background:var(--off-white);
     color:var(--ink);
@@ -39,6 +43,10 @@
   img{display:block;width:100%;height:100%;object-fit:cover;}
   a{color:inherit;text-decoration:none;}
   button{font-family:inherit;border:none;background:none;cursor:pointer;}
+  a:focus-visible,button:focus-visible{outline:2px solid #9c7440;outline-offset:5px;}
+  .skip-link{position:fixed;top:12px;left:12px;z-index:10001;padding:12px 16px;background:var(--off-white);color:var(--black);transform:translateY(-160%);}
+  .skip-link:focus{transform:translateY(0);}
+  body.menu-open{overflow:hidden;}
 
   .container{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,64px);}
 
@@ -96,7 +104,7 @@
   nav.primary-nav a:hover::after{width:100%;}
   .ig-chip{font-size:12px;letter-spacing:0.06em;}
 
-  .menu-btn{display:flex;flex-direction:column;gap:5px;width:26px;z-index:210;}
+  .menu-btn{display:flex;flex-direction:column;gap:5px;width:44px;height:44px;padding:9px;z-index:210;}
   .menu-btn span{display:block;height:1px;background:currentColor;width:100%;transition:transform .4s var(--ease), opacity .3s var(--ease);}
   .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
   .menu-btn.active span:nth-child(2){opacity:0;}
@@ -115,6 +123,8 @@
     transition:transform .7s var(--ease);
   }
   .mobile-menu.open{transform:translateY(0);}
+  .mobile-menu[aria-hidden="true"]{visibility:hidden;}
+  .mobile-menu[aria-hidden="false"]{visibility:visible;}
   .mobile-menu a{
     font-family:var(--serif);color:var(--off-white);font-size:clamp(36px,10vw,56px);
     display:block;padding:10px 0;border-bottom:1px solid var(--line-on-dark);
@@ -130,6 +140,11 @@
   }
   .hero .img-wrap{position:absolute;inset:0;}
   .hero .img-wrap img{transform:scale(1.12);}
+  .hero-brand{font-family:var(--serif);font-size:clamp(15px,2vw,21px);letter-spacing:0.16em;margin-bottom:16px;}
+  .hero h1{font-size:clamp(52px,10vw,132px);max-width:none;}
+  .hero .hero-content{padding-bottom:clamp(74px,10vw,112px);}
+  .hero .hero-content p{font-family:var(--serif);font-size:clamp(20px,2.5vw,27px);color:var(--off-white);}
+  .hero .hero-byline{margin-top:12px;font-family:var(--sans);font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);}
   .hero::after{
     content:'';position:absolute;inset:0;
     background:linear-gradient(180deg, rgba(11,11,10,0.15) 0%, rgba(11,11,10,0.08) 35%, rgba(11,11,10,0.78) 100%);
@@ -181,6 +196,7 @@
   .service-sig{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--stone-dark);}
   .service-body p{font-size:15.5px;line-height:1.75;color:var(--stone-dark);max-width:52ch;}
   .service-body p + p{margin-top:2px;}
+  .service-body h3{text-transform:uppercase;}
 
   .price-row{display:flex;gap:clamp(24px,5vw,56px);margin-top:8px;flex-wrap:wrap;}
   .price-item .label{margin-bottom:6px;}
@@ -221,6 +237,10 @@
   }
   .package:last-of-type{border-bottom:1px solid var(--line-on-dark);}
   .package.featured{background:rgba(243,239,232,0.035);}
+  .package.featured{position:relative;padding-left:clamp(20px,4vw,48px);padding-right:clamp(20px,4vw,48px);border:1px solid rgba(201,194,180,0.42);}
+  .package.featured::before{content:'EXPERIÊNCIA EXCLUSIVA';display:block;grid-column:1/-1;margin-bottom:-22px;color:var(--stone);font-size:10px;letter-spacing:0.18em;}
+  .package.featured .package-left h3{color:#e0c494;}
+  .package.featured .price-item:first-child .amount{font-size:clamp(34px,4vw,48px);color:#e0c494;}
 
   .package-left h3{font-size:clamp(32px,5vw,52px);}
   .package-left p.desc{margin-top:16px;font-size:15.5px;line-height:1.75;color:var(--stone);max-width:44ch;}
@@ -284,6 +304,7 @@
   .booking-grid{display:grid;grid-template-columns:1fr;gap:48px;}
   .booking-text p{font-size:15px;line-height:1.8;color:var(--stone-dark);max-width:52ch;}
   .booking-text p + p{margin-top:14px;}
+  .booking .btn{margin-top:28px;}
   .booking-numbers{display:flex;gap:clamp(32px,6vw,72px);align-items:flex-end;}
   .bn-num{font-family:var(--serif);font-size:clamp(56px,9vw,110px);line-height:0.9;}
   .bn-label{margin-top:10px;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--stone-dim);}
@@ -310,9 +331,37 @@
     font-size:12px;letter-spacing:0.04em;
   }
   @media (min-width:700px){footer{flex-direction:row;justify-content:space-between;text-align:left;}}
+
+  /* ============ GALLERY ============ */
+  .gallery{padding:clamp(78px,11vw,132px) 0;}
+  .gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
+  .gallery-head h2{font-size:clamp(34px,6vw,62px);margin-top:12px;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+  .gallery-item{aspect-ratio:0.78;overflow:hidden;background:var(--stone);}
+  .gallery-item img{transition:transform 1s var(--ease);}
+  .gallery-item:hover img{transform:scale(1.035);}
+  @media (min-width:760px){
+    .gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;}
+    .gallery-item:nth-child(3n + 1){aspect-ratio:0.68;}
+    .gallery-item:nth-child(3n + 2){aspect-ratio:0.82;margin-top:42px;}
+    .gallery-item:nth-child(3n){aspect-ratio:0.72;margin-top:84px;}
+  }
+  .booking-terms{list-style:none;margin-top:22px;border-top:1px solid var(--line-on-light);}
+  .booking-terms li{padding:13px 0;border-bottom:1px solid var(--line-on-light);font-size:14px;line-height:1.65;color:var(--stone-dark);}
+  .booking-title{font-size:clamp(28px,4.4vw,42px);max-width:12ch;margin:12px 0 22px;}
+  @media (max-width:599px){
+    .booking-numbers{flex-wrap:wrap;}
+    .final-cta{min-height:80svh;padding:70px 0;}
+    .final-cta .cta-btns .btn{max-width:100%;white-space:normal;text-align:center;justify-content:center;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.001ms!important;}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Pular para o conteúdo</a>
 
 <!-- ============ CONFIG ============ -->
 <script>
@@ -325,32 +374,35 @@
 
 <!-- ============ HEADER ============ -->
 <header class="site-header">
-  <a href="/" class="logo-mark">BLANCHARD</a>
+  <a href="../index.html" class="logo-mark">BLANCHARD</a>
   <nav class="primary-nav">
-    <a href="/">Portfólio</a>
-    <a href="/servicos">Serviços</a>
+    <a href="../index.html">Portfólio</a>
+    <a href="index.html" aria-current="page">Serviços</a>
     <a href="#agendamento">Contato</a>
     <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="ig-chip">@lucasblanchard_</a>
   </nav>
-  <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-controls="mobileMenu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="/">Portfólio</a>
-  <a href="/servicos">Serviços</a>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Navegação móvel" aria-hidden="true" inert>
+  <a href="../index.html">Portfólio</a>
+  <a href="index.html" aria-current="page">Serviços</a>
   <a href="#agendamento">Contato</a>
   <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="mm-ig">@lucasblanchard_</a>
-</div>
+</nav>
 
 <!-- ============ HERO ============ -->
+<main id="main-content">
 <section class="hero">
-  <div class="img-wrap"></div>
+  <div class="img-wrap"><img src="../assets/inicio portifolio/IMG_3849.JPG.jpeg" alt="Produção editorial Blanchard em São Paulo" fetchpriority="high"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow reveal">Serviços</div>
-    <h1 class="display reveal">Uma experiência de beleza, imagem e produção.</h1>
-    <p class="reveal">Produções desenvolvidas de forma personalizada para valorizar identidade, presença e estética.</p>
+    <div class="hero-eyebrow reveal">Beleza • Imagem • Produção</div>
+    <div class="hero-brand reveal">LUCAS BLANCHARD APRESENTA</div>
+    <h1 class="display reveal">BLANCHARD</h1>
+    <p class="reveal">Beleza real em alta definição</p>
+    <a href="#agendamento" class="btn btn-light whatsapp-btn reveal">Agendar atendimento</a>
   </div>
   <div class="scroll-indicator">
     <span class="scroll-line"></span>
@@ -361,33 +413,31 @@
 <!-- ============ INTRO ============ -->
 <section class="intro">
   <div class="container intro-grid">
-    <h2 class="display reveal">Beauty · Image · Production</h2>
+    <h2 class="display reveal">Beleza • Imagem • Produção</h2>
     <div class="intro-text">
-      <p class="reveal">Cada produção Blanchard é pensada de forma individual, considerando identidade, traços, estilo, ocasião, iluminação e resultado desejado.</p>
-      <p class="reveal">Mais do que maquiagem ou cabelo, cada atendimento é construído para criar uma imagem completa, sofisticada e atemporal.</p>
+      <p class="reveal">Uma beleza pensada para você: seus traços, seu estilo e a ocasião, em uma produção que também vive diante da câmera.</p>
+      <p class="reveal">Maquiagem, cabelo e imagem com direção de Lucas Blanchard.</p>
     </div>
   </div>
 </section>
 
 <!-- ============ SERVICES ============ -->
-<section class="services-head container">
-  <h2 class="display reveal">Serviços</h2>
+<section class="services-head container" aria-labelledby="services-title">
+  <span class="label reveal">Atendimentos sociais</span>
+  <h2 class="display reveal" id="services-title">Serviços</h2>
 </section>
 
-<div id="services">
+<section id="services" aria-labelledby="services-title">
 
   <!-- 01 MAQUIAGEM -->
   <article class="service">
     <div class="service-media reveal-img">
-      <div class="img-wrap"></div>
+      <div class="img-wrap"><img src="../assets/makeup/IMG_1960.jpeg" alt="Maquiagem profissional Blanchard com acabamento editorial" loading="lazy"></div>
     </div>
     <div class="service-body">
       <span class="service-num reveal">01</span>
       <h3 class="display reveal">Maquiagem Profissional</h3>
-      <p class="reveal">Maquiagem personalizada, desenvolvida a partir da identidade, dos traços e dos objetivos de cada cliente.</p>
-      <p class="reveal">Mais do que uma produção de beleza, trata-se de um trabalho construído com olhar estético, atenção aos detalhes e compreensão do que melhor valoriza cada rosto.</p>
-      <p class="reveal">Cada maquiagem é planejada de forma exclusiva, considerando estilo pessoal, vestuário, ocasião, iluminação e resultado desejado, proporcionando um acabamento refinado, elegante e harmonioso.</p>
-      <p class="reveal">O objetivo é revelar a melhor versão de cada cliente, com uma beleza sofisticada, atemporal e impecável tanto presencialmente quanto em fotografias e vídeos.</p>
+      <p class="reveal">Maquiagem personalizada para seus traços, identidade, estilo e ocasião, com acabamento pensado para a luz e para a câmera.</p>
       <div class="price-row reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 500</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 550</div></div>
@@ -399,14 +449,12 @@
   <!-- 02 PENTEADO -->
   <article class="service flip">
     <div class="service-media reveal-img">
-      <div class="img-wrap"></div>
+      <div class="img-wrap"><img src="../assets/penteados/IMG_1794.jpeg" alt="Penteado de produção Blanchard" loading="lazy"></div>
     </div>
     <div class="service-body">
       <span class="service-num reveal">02</span>
       <h3 class="display reveal">Penteado</h3>
-      <p class="reveal">Penteados desenvolvidos de forma personalizada para complementar a maquiagem e valorizar a imagem como um todo.</p>
-      <p class="reveal">Cada escolha é pensada de acordo com os traços, estilo, vestuário e proposta da produção, buscando equilíbrio, elegância e harmonia visual.</p>
-      <p class="reveal">O resultado é uma finalização sofisticada, com movimento, leveza e acabamento refinado, capaz de realçar a beleza natural e fortalecer a presença da cliente em qualquer ocasião.</p>
+      <p class="reveal">Um desenho personalizado para complementar a maquiagem e trazer equilíbrio, movimento e presença à produção.</p>
       <div class="price-row reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 300</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 350</div></div>
@@ -418,14 +466,13 @@
   <!-- 03 ONDAS GISELLE -->
   <article class="service">
     <div class="service-media reveal-img">
-      <div class="img-wrap"></div>
+      <div class="img-wrap"><img src="../assets/makeup/IMG_1957.jpeg" alt="Produção Blanchard com ondas amplas e maquiagem sofisticada" loading="lazy"></div>
     </div>
     <div class="service-body">
       <span class="service-num reveal">03</span>
       <h3 class="display reveal">Ondas Giselle</h3>
       <span class="service-sig reveal">Modelagem autoral Blanchard.</span>
-      <p class="reveal">Ondas amplas, estruturadas e sofisticadas, inspiradas na estética das grandes produções de moda e concursos de beleza.</p>
-      <p class="reveal">Ideal para quem busca um visual elegante, marcante e com maior estrutura, proporcionando presença e refinamento em cada detalhe.</p>
+      <p class="reveal">Ondas amplas, estruturadas e sofisticadas: a modelagem autoral Blanchard para uma presença marcante.</p>
       <div class="price-row reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
@@ -437,14 +484,13 @@
   <!-- 04 BEAUTY WAVES -->
   <article class="service flip">
     <div class="service-media reveal-img">
-      <div class="img-wrap"></div>
+      <div class="img-wrap"><img src="../assets/producao_premium/IMG_1933.jpeg" alt="Produção editorial Blanchard com ondas suaves" loading="lazy"></div>
     </div>
     <div class="service-body">
       <span class="service-num reveal">04</span>
       <h3 class="display reveal">Beauty Waves</h3>
       <span class="service-sig reveal">Modelagem exclusiva Blanchard.</span>
-      <p class="reveal">Ondas suaves, texturizadas e com movimento natural, inspiradas na estética dos editoriais contemporâneos e do luxo descomplicado.</p>
-      <p class="reveal">Ideal para quem busca um visual leve, moderno e sofisticado, com efeito praiano refinado e acabamento natural.</p>
+      <p class="reveal">Ondas suaves, texturizadas e naturais para um visual leve, contemporâneo e refinado.</p>
       <div class="price-row reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
@@ -453,7 +499,7 @@
     </div>
   </article>
 
-</div>
+</section>
 
 <!-- ============ EXPERIENCES ============ -->
 <section class="experiences">
@@ -478,7 +524,7 @@
       <div class="package-right reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 990</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 1.150</div></div>
-        <a href="#" class="btn btn-light whatsapp-btn">Quero minha produção</a>
+        <a href="#" class="btn btn-light whatsapp-btn" data-service="Produção Blanchard">Quero minha produção</a>
       </div>
     </div>
 
@@ -499,36 +545,26 @@
       <div class="package-right reveal">
         <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 1.150</div></div>
         <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 1.400</div></div>
-        <a href="#" class="btn btn-light whatsapp-btn">Quero viver essa experiência</a>
+        <a href="#" class="btn btn-light whatsapp-btn" data-service="Blanchard Premium">Quero viver essa experiência</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ COMPARISON ============ -->
-<section class="compare container">
-  <div class="compare-head">
-    <h2 class="display reveal">Produção Blanchard ou Blanchard Premium.</h2>
-  </div>
-  <div class="compare-grid reveal">
-    <div class="compare-col">
-      <h4>Produção Blanchard</h4>
-      <ul>
-        <li>Maquiagem</li>
-        <li>Cabelo</li>
-        <li>Fotografia</li>
-        <li>08 fotos tratadas</li>
-      </ul>
+<!-- ============ GALERIA ============ -->
+<section class="gallery" id="galeria" aria-labelledby="gallery-title">
+  <div class="container">
+    <div class="gallery-head">
+      <div><span class="label reveal">Seleção Blanchard</span><h2 class="display reveal" id="gallery-title">Imagem que permanece.</h2></div>
+      <span class="label reveal">Beleza · Cabelo · Editorial</span>
     </div>
-    <div class="compare-col premium">
-      <h4>Blanchard Premium</h4>
-      <ul>
-        <li>Maquiagem</li>
-        <li>Cabelo</li>
-        <li>Fotografia</li>
-        <li class="new">12 fotos tratadas</li>
-        <li class="new">Fashion Film</li>
-      </ul>
+    <div class="gallery-grid">
+      <figure class="gallery-item reveal-img"><img src="../assets/makeup/IMG_1956.jpeg" alt="Maquiagem social Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img src="../assets/penteados/IMG_1902.jpeg" alt="Penteado de beleza Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img src="../assets/producao_premium/IMG_1718.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img src="../assets/makeup/IMG_1936.jpeg" alt="Beleza editorial Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img src="../assets/producao_premium/IMG_1382.jpeg" alt="Produção premium em estúdio" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img src="../assets/penteados/IMG_1964.jpeg" alt="Detalhe de cabelo em produção editorial" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -539,9 +575,8 @@
     <h2 class="display reveal">Atendimento & deslocamento</h2>
     <div class="info-text reveal">
       <p>Valores válidos para São Paulo – Capital.</p>
-      <p>Para atendimentos a domicílio, será cobrada taxa de deslocamento de R$ 200, referente aos custos de transporte e logística do atendimento.</p>
-      <p>Atendimentos realizados no interior de São Paulo, em outros estados ou países possuem orçamento específico, definido de acordo com localização, deslocamento e logística necessária.</p>
-      <p class="final-note">Valores sob consulta.</p>
+      <p>A domicílio, soma-se taxa de deslocamento de R$ 200.</p>
+      <p>Interior de São Paulo, outros estados e países: orçamento sob consulta.</p>
     </div>
   </div>
 </section>
@@ -552,7 +587,7 @@
     <h2 class="display reveal">Importante</h2>
     <div class="info-text reveal">
       <p>Este portfólio refere-se exclusivamente a produções sociais.</p>
-      <p>Produções para noivas e debutantes possuem estrutura, planejamento e investimento específicos, devendo ser consultadas separadamente.</p>
+      <p>Noivas e debutantes possuem estrutura, planejamento e investimento específicos.</p>
     </div>
   </div>
 </section>
@@ -561,21 +596,26 @@
 <section class="booking" id="agendamento">
   <div class="container booking-grid">
     <div>
-      <h2 class="display reveal" style="font-size:clamp(28px,4.4vw,42px); max-width:12ch; margin-bottom:22px;">Agendamento & reserva</h2>
+      <span class="label reveal">Agendamento</span>
+      <h2 class="display reveal booking-title">Reserva de data</h2>
       <div class="booking-text reveal">
-        <p>Os atendimentos estão sujeitos à disponibilidade de agenda e devem ser previamente confirmados.</p>
-        <p>Para reserva de data e horário, é necessário o pagamento antecipado de 50% do valor total da produção. Os 50% restantes deverão ser pagos no dia do atendimento.</p>
-        <p>Em caso de desistência por parte da cliente, o valor da reserva não será devolvido, permanecendo como crédito para utilização futura mediante disponibilidade de agenda.</p>
-        <p>Em caso de cancelamento por iniciativa do profissional, o valor pago será devolvido integralmente.</p>
+        <p>Para reservar sua data, consulte a disponibilidade e as condições abaixo.</p>
+        <ul class="booking-terms">
+          <li>Atendimento sujeito à disponibilidade de agenda.</li>
+          <li>Reserva confirmada com 50% de pagamento antecipado; saldo no dia do atendimento.</li>
+          <li>Em caso de desistência, a reserva permanece como crédito futuro, mediante disponibilidade.</li>
+          <li>Se o profissional cancelar, o valor pago será devolvido integralmente.</li>
+        </ul>
+        <a href="#" class="btn btn-dark whatsapp-btn" data-service="consulta de disponibilidade">Consultar disponibilidade no WhatsApp</a>
       </div>
     </div>
     <div class="booking-numbers reveal">
       <div>
-        <div class="bn-num display" data-target="50">0</div>
+        <div class="bn-num display">50%</div>
         <div class="bn-label">Reserva da data</div>
       </div>
       <div>
-        <div class="bn-num display" data-target="50">0</div>
+        <div class="bn-num display">50%</div>
         <div class="bn-label">Pagamento no dia</div>
       </div>
     </div>
@@ -584,16 +624,17 @@
 
 <!-- ============ FINAL CTA ============ -->
 <section class="final-cta">
-  <div class="img-wrap"></div>
+  <div class="img-wrap"><img src="../assets/producao_premium/IMG_0588.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></div>
   <div class="final-cta-content">
     <h2 class="display reveal">Sua próxima produção começa aqui.</h2>
     <p class="reveal">Agende seu atendimento e descubra a experiência Blanchard.</p>
     <div class="cta-btns reveal">
-      <a href="#" class="btn btn-light whatsapp-btn">Agendar pelo WhatsApp</a>
+      <a href="#" class="btn btn-light whatsapp-btn" data-service="atendimento Blanchard">Agendar pelo WhatsApp</a>
       <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="btn btn-light">Instagram</a>
     </div>
   </div>
 </section>
+</main>
 
 <!-- ============ FOOTER ============ -->
 <footer>
@@ -606,8 +647,10 @@
   // WhatsApp links
   (function(){
     var cfg = window.BLANCHARD_CONFIG;
-    var url = "https://wa.me/" + cfg.whatsappNumber + "?text=" + encodeURIComponent(cfg.whatsappMessage);
     document.querySelectorAll('.whatsapp-btn').forEach(function(el){
+      var service = el.getAttribute('data-service');
+      var message = service ? "Olá, Lucas! Vim pelo site e gostaria de informações sobre " + service + "." : cfg.whatsappMessage;
+      var url = "https://wa.me/" + cfg.whatsappNumber + "?text=" + encodeURIComponent(message);
       el.setAttribute('href', url);
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
@@ -617,60 +660,51 @@
   // Mobile menu
   var menuBtn = document.getElementById('menuBtn');
   var mobileMenu = document.getElementById('mobileMenu');
+  function setMenuOpen(isOpen){
+    menuBtn.classList.toggle('active', isOpen);
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    menuBtn.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    mobileMenu.toggleAttribute('inert', !isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  }
   menuBtn.addEventListener('click', function(){
-    menuBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
+    setMenuOpen(menuBtn.getAttribute('aria-expanded') !== 'true');
   });
   mobileMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){
-      menuBtn.classList.remove('active');
-      mobileMenu.classList.remove('open');
+      setMenuOpen(false);
     });
+  });
+  document.addEventListener('keydown', function(event){
+    if(event.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true'){
+      setMenuOpen(false);
+      menuBtn.focus();
+    }
   });
 
   // Reveal on scroll
   var revealEls = document.querySelectorAll('.reveal, .reveal-img');
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-  revealEls.forEach(function(el){ io.observe(el); });
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
 
   // Stagger children reveal within services/paragraph blocks
   document.querySelectorAll('.service-body, .booking-numbers > div, .package-right').forEach(function(group){
     var children = group.querySelectorAll('.reveal');
     children.forEach(function(el, i){ el.style.transitionDelay = (i * 70) + 'ms'; });
   });
-
-  // Animated count-up for 50% / 50%
-  var bnNums = document.querySelectorAll('.bn-num');
-  var counted = false;
-  var bnIo = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting && !counted){
-        counted = true;
-        bnNums.forEach(function(el){
-          var target = parseInt(el.getAttribute('data-target'), 10);
-          var start = 0;
-          var duration = 1100;
-          var startTime = null;
-          function step(ts){
-            if(!startTime) startTime = ts;
-            var progress = Math.min((ts - startTime) / duration, 1);
-            var eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.round(eased * target) + '%';
-            if(progress < 1) requestAnimationFrame(step);
-          }
-          requestAnimationFrame(step);
-        });
-      }
-    });
-  }, {threshold:0.4});
-  if(bnNums.length){ bnIo.observe(bnNums[0].closest('.booking-numbers')); }
 
   // Subtle parallax on hero + final CTA image
   var parallaxTargets = document.querySelectorAll('.hero .img-wrap img, .final-cta .img-wrap img');
@@ -684,7 +718,9 @@
       }
     });
   }
-  window.addEventListener('scroll', onScroll, {passive:true});
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    window.addEventListener('scroll', onScroll, {passive:true});
+  }
 
   // Header contrast handling not needed (mix-blend-mode:difference handles it)
 </script>
