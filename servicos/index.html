@@ -9,6 +9,17 @@
 <meta property="og:title" content="Serviços Blanchard | Beleza, Imagem & Produção">
 <meta property="og:description" content="Beleza real em alta definição. Conheça os serviços, produções e valores Blanchard em São Paulo.">
 <meta property="og:type" content="website">
+<!-- Troque o dominio provisório pelo domínio publicado e mantenha a imagem OG em 1200x630. -->
+<meta property="og:url" content="https://www.seu-dominio.com.br/servicos/">
+<meta property="og:image" content="https://www.seu-dominio.com.br/assets/og-blanchard.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Retrato de beleza em produção Blanchard">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Serviços Blanchard | Beleza, Imagem & Produção">
+<meta name="twitter:description" content="Beleza real em alta definição. Conheça os serviços, produções e valores Blanchard em São Paulo.">
+<!-- Atualize junto com og:image quando definir o domínio final. -->
+<meta name="twitter:image" content="https://www.seu-dominio.com.br/assets/og-blanchard.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,6 +209,23 @@
   .service-body p + p{margin-top:2px;}
   .service-body h3{text-transform:uppercase;}
 
+  .service-grid{
+    display:grid;grid-template-columns:minmax(0,1fr);gap:1px;
+    background:var(--line-on-light);margin-bottom:clamp(72px,10vw,120px);
+  }
+  .service-card{min-width:0;background:var(--off-white);}
+  .service-card-media{aspect-ratio:4 / 3;overflow:hidden;background:#d8d2c8;}
+  .service-card-media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);}
+  .service-card:hover .service-card-media img{transform:scale(1.035);}
+  .service-card-body{min-height:260px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;align-items:flex-start;}
+  .service-card-status{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--stone-dark);}
+  .service-card h3{font-family:var(--serif);font-size:clamp(25px,3vw,34px);line-height:1.1;margin-top:10px;}
+  .service-card p{font-size:14px;line-height:1.7;color:var(--stone-dark);margin-top:12px;}
+  .service-card-price{font-size:12px;line-height:1.6;color:var(--stone-dark);margin-top:14px;}
+  .service-card .btn{margin-top:auto;padding:13px 16px;font-size:10px;}
+  @media (min-width:650px){.service-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media (min-width:1050px){.service-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+
   .price-row{display:flex;gap:clamp(24px,5vw,56px);margin-top:8px;flex-wrap:wrap;}
   .price-item .label{margin-bottom:6px;}
   .price-item .amount{font-family:var(--serif);font-size:26px;}
@@ -367,7 +395,7 @@
 <script>
   // EDITE AQUI o número real de WhatsApp do Lucas (formato internacional, apenas números)
   window.BLANCHARD_CONFIG = {
-    whatsappNumber: "5511900000000", // <-- placeholder, substituir pelo número real
+    whatsappNumber: "5511975145086",
     whatsappMessage: "Olá, Lucas! Vim pelo site e gostaria de consultar a disponibilidade para uma produção."
   };
 </script>
@@ -396,7 +424,7 @@
 <!-- ============ HERO ============ -->
 <main id="main-content">
 <section class="hero">
-  <div class="img-wrap"><img src="../assets/inicio portifolio/IMG_3849.JPG.jpeg" alt="Produção editorial Blanchard em São Paulo" fetchpriority="high"></div>
+  <div class="img-wrap"><img src="../assets/inicio%20portifolio/ChatGPT%20Image%203%20de%20out.%20de%202026,%2012_58_14.png" alt="Produção editorial Blanchard em São Paulo" fetchpriority="high"></div>
   <div class="hero-content">
     <div class="hero-eyebrow reveal">Beleza • Imagem • Produção</div>
     <div class="hero-brand reveal">LUCAS BLANCHARD APRESENTA</div>
@@ -428,77 +456,7 @@
 </section>
 
 <section id="services" aria-labelledby="services-title">
-
-  <!-- 01 MAQUIAGEM -->
-  <article class="service">
-    <div class="service-media reveal-img">
-      <div class="img-wrap"><img src="../assets/makeup/IMG_1960.jpeg" alt="Maquiagem profissional Blanchard com acabamento editorial" loading="lazy"></div>
-    </div>
-    <div class="service-body">
-      <span class="service-num reveal">01</span>
-      <h3 class="display reveal">Maquiagem Profissional</h3>
-      <p class="reveal">Maquiagem personalizada para seus traços, identidade, estilo e ocasião, com acabamento pensado para a luz e para a câmera.</p>
-      <div class="price-row reveal">
-        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 500</div></div>
-        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 550</div></div>
-      </div>
-      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
-    </div>
-  </article>
-
-  <!-- 02 PENTEADO -->
-  <article class="service flip">
-    <div class="service-media reveal-img">
-      <div class="img-wrap"><img src="../assets/penteados/IMG_1794.jpeg" alt="Penteado de produção Blanchard" loading="lazy"></div>
-    </div>
-    <div class="service-body">
-      <span class="service-num reveal">02</span>
-      <h3 class="display reveal">Penteado</h3>
-      <p class="reveal">Um desenho personalizado para complementar a maquiagem e trazer equilíbrio, movimento e presença à produção.</p>
-      <div class="price-row reveal">
-        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 300</div></div>
-        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 350</div></div>
-      </div>
-      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
-    </div>
-  </article>
-
-  <!-- 03 ONDAS GISELLE -->
-  <article class="service">
-    <div class="service-media reveal-img">
-      <div class="img-wrap"><img src="../assets/makeup/IMG_1957.jpeg" alt="Produção Blanchard com ondas amplas e maquiagem sofisticada" loading="lazy"></div>
-    </div>
-    <div class="service-body">
-      <span class="service-num reveal">03</span>
-      <h3 class="display reveal">Ondas Giselle</h3>
-      <span class="service-sig reveal">Modelagem autoral Blanchard.</span>
-      <p class="reveal">Ondas amplas, estruturadas e sofisticadas: a modelagem autoral Blanchard para uma presença marcante.</p>
-      <div class="price-row reveal">
-        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
-        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
-      </div>
-      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
-    </div>
-  </article>
-
-  <!-- 04 BEAUTY WAVES -->
-  <article class="service flip">
-    <div class="service-media reveal-img">
-      <div class="img-wrap"><img src="../assets/producao_premium/IMG_1933.jpeg" alt="Produção editorial Blanchard com ondas suaves" loading="lazy"></div>
-    </div>
-    <div class="service-body">
-      <span class="service-num reveal">04</span>
-      <h3 class="display reveal">Beauty Waves</h3>
-      <span class="service-sig reveal">Modelagem exclusiva Blanchard.</span>
-      <p class="reveal">Ondas suaves, texturizadas e naturais para um visual leve, contemporâneo e refinado.</p>
-      <div class="price-row reveal">
-        <div class="price-item"><div class="label">Espaço Blanchard</div><div class="amount display">R$ 200</div></div>
-        <div class="price-item"><div class="label">A domicílio</div><div class="amount display">R$ 250</div></div>
-      </div>
-      <a href="#" class="btn btn-dark whatsapp-btn reveal">Agendar</a>
-    </div>
-  </article>
-
+  <div class="container service-grid" id="servicesGrid"></div>
 </section>
 
 <!-- ============ EXPERIENCES ============ -->
@@ -644,6 +602,60 @@
 </footer>
 
 <script>
+  // Edite os serviços aqui; Baby e o estilo de Ondas aguardam confirmação do cliente.
+  var services = [
+    {
+      name: "Maquiagem",
+      description: "Maquiagem personalizada para seus traços, identidade, estilo e ocasião.",
+      image: "../assets/makeup/IMG_1960.jpeg",
+      alt: "Maquiagem profissional com acabamento editorial",
+      price: "R$ 500 no espaço · R$ 550 a domicílio"
+    },
+    {
+      name: "Penteados",
+      description: "Um desenho personalizado para complementar a maquiagem e a ocasião.",
+      image: "../assets/penteados/IMG_1794.jpeg",
+      alt: "Penteado de beleza em produção editorial",
+      price: "R$ 300 no espaço · R$ 350 a domicílio"
+    },
+    {
+      name: "Baby",
+      status: "Serviço a confirmar",
+      description: "Confirmar com o cliente se é babyliss, penteado, ensaio ou outro serviço.",
+      image: "../assets/penteados/IMG_1902.jpeg",
+      alt: "Produção de cabelo usada como referência provisória para o serviço Baby"
+    },
+    {
+      name: "Ondas",
+      status: "Estilo a confirmar",
+      description: "Confirmar o estilo de ondas desejado e atualizar esta descrição com o cliente.",
+      image: "../assets/producao_premium/IMG_1933.jpeg",
+      alt: "Produção de beleza com cabelo modelado em ondas",
+      price: "R$ 200 no espaço · R$ 250 a domicílio"
+    },
+    {
+      name: "Pacote Premium",
+      description: "Maquiagem, cabelo, produção fotográfica, 12 fotos tratadas e um Fashion Film.",
+      image: "../assets/producao_premium/IMG_0355.jpeg",
+      alt: "Produção de beleza premium com fotografia editorial",
+      price: "R$ 1.150 no espaço · R$ 1.400 a domicílio"
+    }
+  ];
+
+  var servicesGrid = document.getElementById('servicesGrid');
+  servicesGrid.innerHTML = services.map(function(service){
+    return '<article class="service-card">' +
+      '<div class="service-card-media"><img src="' + service.image + '" alt="' + service.alt + '" loading="lazy" decoding="async"></div>' +
+      '<div class="service-card-body">' +
+        (service.status ? '<span class="service-card-status">' + service.status + '</span>' : '') +
+        '<h3>' + service.name + '</h3>' +
+        '<p>' + service.description + '</p>' +
+        (service.price ? '<p class="service-card-price">' + service.price + '</p>' : '') +
+        '<a href="#" class="btn btn-dark whatsapp-btn" data-service="' + service.name + '">Agendar pelo WhatsApp</a>' +
+      '</div>' +
+    '</article>';
+  }).join('');
+
   // WhatsApp links
   (function(){
     var cfg = window.BLANCHARD_CONFIG;

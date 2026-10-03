@@ -10,7 +10,17 @@
 <meta property="og:title" content="Lucas Blanchard — Beleza real em alta definição.">
 <meta property="og:description" content="Beauty Artist, Hair &amp; Makeup, Photographer &amp; Filmmaker. São Paulo, Brasil.">
 <meta property="og:type" content="website">
+<!-- Troque o dominio provisório pelo domínio publicado e mantenha a imagem OG em 1200x630. -->
+<meta property="og:url" content="https://www.seu-dominio.com.br/">
+<meta property="og:image" content="https://www.seu-dominio.com.br/assets/og-blanchard.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Retrato de beleza em produção Blanchard">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lucas Blanchard — Beleza real em alta definição.">
+<meta name="twitter:description" content="Beauty Artist, Hair &amp; Makeup, Photographer &amp; Filmmaker. São Paulo, Brasil.">
+<!-- Atualize junto com og:image quando definir o domínio final. -->
+<meta name="twitter:image" content="https://www.seu-dominio.com.br/assets/og-blanchard.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +31,7 @@
    LUCAS BLANCHARD — DESIGN TOKENS
    ============================================================ */
 :root{
+  --hero-position: 50% 28%; /* ajuste o foco do rosto após trocar a foto */
   --black: #0a0a09;
   --charcoal: #151412;
   --line: rgba(237,232,223,0.14);
@@ -179,10 +190,11 @@ body.menu-open{overflow:hidden;}
 }
 .hero-media{ position:absolute; inset:0; overflow:hidden; }
 .hero-media img{
-  width:100%; height:100%; object-fit:cover; object-position:50% 28%;
+  width:100%; height:100%; object-fit:cover; object-position:var(--hero-position);
   transform:scale(1.14);
   filter:grayscale(.08) contrast(1.05);
 }
+@media (max-width:700px){ :root{ --hero-position:50% 22%; } }
 .hero-media::after{
   content:''; position:absolute; inset:0;
   background:linear-gradient(180deg, rgba(10,10,9,.15) 0%, rgba(10,10,9,.05) 38%, rgba(10,10,9,.55) 78%, rgba(10,10,9,.92) 100%);
@@ -523,7 +535,7 @@ footer{ border-top:1px solid var(--line); padding:4rem var(--edge) 2.4rem; }
        ============================================================ -->
   <section class="hero">
     <div class="hero-media" id="heroMedia">
-      <img src="assets/inicio portifolio/IMG_3849.JPG.jpeg" alt="Produção de beleza e moda em São Paulo" fetchpriority="high">
+      <img src="assets/inicio%20portifolio/ChatGPT%20Image%203%20de%20out.%20de%202026,%2012_58_14.png" alt="Lucas Blanchard em produção de beleza" fetchpriority="high">
     </div>
     <div class="hero-content">
       <div class="hero-kicker"><span>Beauty · Hair &amp; Makeup · Photography · Film</span></div>
@@ -731,7 +743,7 @@ footer{ border-top:1px solid var(--line); padding:4rem var(--edge) 2.4rem; }
     <h2 class="reveal">Vamos criar.</h2>
     <p class="reveal">Para projetos de beleza, imagem e produção audiovisual — entre em contato para agendar ou conversar sobre o próximo trabalho.</p>
     <div class="contact-actions reveal">
-      <a href="https://wa.me/5511900000000" target="_blank" rel="noopener" class="btn btn-solid">Agendar</a>
+      <a href="https://wa.me/5511975145086" target="_blank" rel="noopener" class="btn btn-solid">Agendar</a>
       <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener" class="btn btn-ghost">Instagram</a>
     </div>
   </section>
@@ -754,7 +766,7 @@ footer{ border-top:1px solid var(--line); padding:4rem var(--edge) 2.4rem; }
       <div class="foot-col">
         <span class="label">Contato</span>
         <a href="https://www.instagram.com/lucasblanchard_/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://wa.me/5511900000000" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/5511975145086" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
   </div>
