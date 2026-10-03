@@ -51,7 +51,7 @@
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
   }
-  img{display:block;width:100%;height:100%;object-fit:cover;}
+  img{display:block;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 30%);}
   a{color:inherit;text-decoration:none;}
   button{font-family:inherit;border:none;background:none;cursor:pointer;}
   a:focus-visible,button:focus-visible{outline:2px solid #9c7440;outline-offset:5px;}
@@ -149,8 +149,9 @@
     color:var(--off-white);
     overflow:hidden;
   }
-  .hero .img-wrap{position:absolute;inset:0;}
-  .hero .img-wrap img{transform:scale(1.12);}
+  .hero .img-wrap{position:absolute;inset:-48px 0;}
+  .hero .img-wrap img{transform:none;object-position:var(--pos,50% 30%);}
+  @media (max-width:700px){.hero .img-wrap img{object-position:var(--pos-m,var(--pos,50% 30%));}}
   .hero-brand{font-family:var(--serif);font-size:clamp(15px,2vw,21px);letter-spacing:0.16em;margin-bottom:16px;}
   .hero h1{font-size:clamp(52px,10vw,132px);max-width:none;}
   .hero .hero-content{padding-bottom:clamp(74px,10vw,112px);}
@@ -214,7 +215,7 @@
     background:var(--line-on-light);margin-bottom:clamp(72px,10vw,120px);
   }
   .service-card{min-width:0;background:var(--off-white);}
-  .service-card-media{aspect-ratio:4 / 3;overflow:hidden;background:#d8d2c8;}
+  .service-card-media{aspect-ratio:4 / 5;overflow:hidden;background:#d8d2c8;}
   .service-card-media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);}
   .service-card:hover .service-card-media img{transform:scale(1.035);}
   .service-card-body{min-height:260px;padding:clamp(22px,3vw,34px);display:flex;flex-direction:column;align-items:flex-start;}
@@ -345,7 +346,8 @@
     position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;
     text-align:center;color:var(--off-white);overflow:hidden;
   }
-  .final-cta .img-wrap{position:absolute;inset:0;}
+  .final-cta .img-wrap{position:absolute;inset:-48px 0;}
+  .final-cta .img-wrap img{transform:none;}
   .final-cta::after{content:'';position:absolute;inset:0;background:rgba(11,11,10,0.56);}
   .final-cta-content{position:relative;z-index:2;padding:0 24px;}
   .final-cta h2{font-size:clamp(38px,7vw,84px);}
@@ -360,6 +362,11 @@
   }
   @media (min-width:700px){footer{flex-direction:row;justify-content:space-between;text-align:left;}}
 
+  /* ============ AUTO-FIT (evita corte quando a proporção da foto não combina com a moldura) ============ */
+  .service-card-media,.portfolio-card .media,.gallery-item{position:relative;isolation:isolate;}
+  .fit-contain::before{content:'';position:absolute;inset:-24px;z-index:-1;background:var(--bg) center/cover no-repeat;filter:blur(22px) brightness(.82) saturate(1.05);}
+  .service-card-media.fit-contain img,.portfolio-card .media.fit-contain img,.gallery-item.fit-contain img{object-fit:contain;object-position:50% 50%;}
+
   /* ============ GALLERY ============ */
   .gallery{padding:clamp(78px,11vw,132px) 0;}
   .gallery-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px;}
@@ -373,6 +380,57 @@
     .gallery-item:nth-child(3n + 1){aspect-ratio:0.68;}
     .gallery-item:nth-child(3n + 2){aspect-ratio:0.82;margin-top:42px;}
     .gallery-item:nth-child(3n){aspect-ratio:0.72;margin-top:84px;}
+  }
+
+  .portfolio-showcase{padding:clamp(48px,7vw,88px) 0 0;}
+  .portfolio-showcase + .portfolio-showcase{padding-top:clamp(26px,4vw,52px);}
+  .portfolio-header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:28px;}
+  .portfolio-header h3{font-size:clamp(26px,4vw,46px);}
+  .portfolio-header .portfolio-price{font-family:var(--serif);font-size:22px;color:var(--ink);max-width:18ch;line-height:1.2;}
+  .portfolio-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  .portfolio-card{background:rgba(23,22,19,0.03);border:1px solid var(--line-on-light);overflow:hidden;min-width:0;}
+  .portfolio-card .media{aspect-ratio:4 / 5;overflow:hidden;background:#d5d0c8;}
+  .portfolio-card .media img{height:100%;width:100%;object-fit:cover;transition:transform 1.2s var(--ease);}
+  .portfolio-card:hover .media img{transform:scale(1.04);}
+  .portfolio-card .meta{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0;}
+  .portfolio-card .meta .name{font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone-dim);}
+  .portfolio-card .meta .value{font-family:var(--serif);font-size:clamp(24px,3vw,32px);line-height:1;}
+  .portfolio-card .meta .detail{font-size:14px;line-height:1.6;color:var(--stone-dark);}
+  .portfolio-card.is-wide .media{aspect-ratio:16 / 11;}
+  .portfolio-card.is-portrait .media{aspect-ratio:4 / 6;}
+  @media (min-width:720px){
+    .portfolio-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .portfolio-card.is-wide{grid-column:span 2;}
+  }
+  @media (min-width:1040px){
+    .portfolio-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+    .portfolio-card.is-wide{grid-column:span 2;}
+  }
+  @media (max-width:599px){
+    .portfolio-showcase{padding-top:40px;}
+    .portfolio-header{align-items:flex-start;}
+    .portfolio-header h3{font-size:clamp(26px,8vw,36px);}
+    .portfolio-header .portfolio-price{font-size:17px;max-width:100%;}
+    .portfolio-card .meta{padding:14px 14px 16px;gap:8px;}
+    .portfolio-card .meta .name{letter-spacing:0.12em;}
+    .portfolio-card .meta .value{font-size:24px;}
+    .portfolio-card .meta .detail{font-size:13px;line-height:1.5;}
+    .portfolio-card .media,
+    .portfolio-card.is-wide .media,
+    .portfolio-card.is-portrait .media{aspect-ratio:4 / 5;}
+    .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+    .gallery-item{aspect-ratio:0.82;min-width:0;}
+  }
+  @media (max-width:420px){
+    .portfolio-header{gap:12px;}
+    .portfolio-card .meta .value{font-size:22px;}
+    .portfolio-card .meta .detail{font-size:12.6px;}
+    .gallery-grid{grid-template-columns:1fr;gap:10px;}
+    .gallery-item{aspect-ratio:4 / 5;}
+    .booking-title{max-width:9ch;}
+    .final-cta h2{font-size:clamp(32px,11vw,48px);}
+    .final-cta p{font-size:14px;}
+    .cta-btns .btn{width:100%;justify-content:center;}
   }
   .booking-terms{list-style:none;margin-top:22px;border-top:1px solid var(--line-on-light);}
   .booking-terms li{padding:13px 0;border-bottom:1px solid var(--line-on-light);font-size:14px;line-height:1.65;color:var(--stone-dark);}
@@ -424,7 +482,7 @@
 <!-- ============ HERO ============ -->
 <main id="main-content">
 <section class="hero">
-  <div class="img-wrap"><img src="../assets/inicio%20portifolio/ChatGPT%20Image%203%20de%20out.%20de%202026,%2012_58_14.png" alt="Produção editorial Blanchard em São Paulo" fetchpriority="high"></div>
+  <div class="img-wrap"><img style="--pos:50% 32%;--pos-m:50% 28%" src="../assets/inicio%20portifolio/ChatGPT%20Image%203%20de%20out.%20de%202026,%2012_58_14.png" alt="Produção editorial Blanchard em São Paulo" fetchpriority="high"></div>
   <div class="hero-content">
     <div class="hero-eyebrow reveal">Beleza • Imagem • Produção</div>
     <div class="hero-brand reveal">LUCAS BLANCHARD APRESENTA</div>
@@ -457,6 +515,126 @@
 
 <section id="services" aria-labelledby="services-title">
   <div class="container service-grid" id="servicesGrid"></div>
+</section>
+
+<!-- ============ PORTFÓLIO DE MAQUIAGEM ============ -->
+<section class="portfolio-showcase container" aria-labelledby="makeup-showcase-title">
+  <div class="portfolio-header reveal">
+    <div>
+      <span class="label">Serviço</span>
+      <h3 class="display" id="makeup-showcase-title">Maquiagem</h3>
+    </div>
+    <div class="portfolio-price">R$ 500 · Espaço / R$ 550 · Domicílio</div>
+  </div>
+  <div class="portfolio-grid">
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1813.jpeg" alt="Maquiagem com acabamento sofisticado em close" loading="lazy"></div>
+      <div class="meta"><span class="name">Acabamento</span><span class="value">Glow</span><p class="detail">Finalização brilhante, definida e elegante para produção fotográfica.</p></div>
+    </article>
+    <article class="portfolio-card reveal-img">
+      <div class="media"><img style="--pos:50% 30%" src="../assets/makeup/IMG_1936.jpeg" alt="Maquiagem profissional em produção editorial" loading="lazy"></div>
+      <div class="meta"><span class="name">Look</span><span class="value">Editorial</span><p class="detail">Tom quente e refinado com foco em pele luminosa e olhos marcados.</p></div>
+    </article>
+    <article class="portfolio-card is-wide reveal-img">
+      <div class="media"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1415.jpeg" alt="Maquiagem de pele madura com acabamento natural" loading="lazy"></div>
+      <div class="meta"><span class="name">Pele madura</span><span class="value">Natural & sofisticado</span><p class="detail">Exemplo de maquiagem pensada para realçar traços com sofisticação e brilho leve.</p></div>
+    </article>
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1956.jpeg" alt="Maquiagem com traços marcados e pele impecável" loading="lazy"></div>
+      <div class="meta"><span class="name">Detalhe</span><span class="value">Olhos</span><p class="detail">Maquiagem com foco em linhas suaves, impacto e presença na câmera.</p></div>
+    </article>
+    <article class="portfolio-card reveal-img">
+      <div class="media"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1960.jpeg" alt="Produção de maquiagem com acabamento profissional" loading="lazy"></div>
+      <div class="meta"><span class="name">Produção</span><span class="value">Beauty</span><p class="detail">Visual com acabamento impecável para fotografia e presença em eventos.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PORTFÓLIO DE PENTEADOS ============ -->
+<section class="portfolio-showcase container" aria-labelledby="hair-showcase-title">
+  <div class="portfolio-header reveal">
+    <div>
+      <span class="label">Serviço</span>
+      <h3 class="display" id="hair-showcase-title">Penteados</h3>
+    </div>
+    <div class="portfolio-price">R$ 300 · Espaço / R$ 350 · Domicílio</div>
+  </div>
+  <div class="portfolio-grid">
+    <article class="portfolio-card is-wide reveal-img">
+      <div class="media"><img style="--pos:50% 20%" src="../assets/penteados/IMG_1902.jpeg" alt="Penteado elegante em produção de beleza" loading="lazy"></div>
+      <div class="meta"><span class="name">Penteado</span><span class="value">Elegante</span><p class="detail">Estrutura com volume e movimento, preservando o visual completo do cabelo.</p></div>
+    </article>
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 25%" src="../assets/penteados/IMG_1794.jpeg" alt="Penteado volumoso com acabamento sofisticado" loading="lazy"></div>
+      <div class="meta"><span class="name">Detalhe</span><span class="value">Volume</span><p class="detail">Enquadramento que mostra cabelo, textura e movimento sem cortes importantes.</p></div>
+    </article>
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 25%" src="../assets/penteados/81DD48D8-8B81-41C7-AA6D-36167BAE26F2.png" alt="Penteado com ondas suaves e acabamento sofisticado" loading="lazy"></div>
+      <div class="meta"><span class="name">Textura</span><span class="value">Ondulado</span><p class="detail">Visual com ondas suaves e acabamento refinado para foto e presença.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ONDAS / GISELE ============ -->
+<section class="portfolio-showcase container" aria-labelledby="waves-showcase-title">
+  <div class="portfolio-header reveal">
+    <div>
+      <span class="label">Serviço</span>
+      <h3 class="display" id="waves-showcase-title">Ondas / Gisele</h3>
+    </div>
+    <div class="portfolio-price">R$ 200 · Espaço / R$ 250 · Domicílio</div>
+  </div>
+  <div class="portfolio-grid">
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 25%" src="../assets/producao_premium/IMG_1933.jpeg" alt="Modelo com ondas elegantes e cabelo em movimento" loading="lazy"></div>
+      <div class="meta"><span class="name">Referência</span><span class="value">Ondas</span><p class="detail">Estrutura de ondas em cabelo com movimento natural e visual sofisticado.</p></div>
+    </article>
+    <article class="portfolio-card reveal-img">
+      <div class="media"><img style="--pos:50% 20%" src="../assets/producao_premium/IMG_1718.jpeg" alt="Beauty waves em produção premium" loading="lazy"></div>
+      <div class="meta"><span class="name">Estilo</span><span class="value">Beauty Waves</span><p class="detail">Visual com volume e curvatura elegante para produção e ensaio.</p></div>
+    </article>
+    <article class="portfolio-card is-wide reveal-img">
+      <div class="media"><img style="--pos:50% 20%" src="../assets/producao_premium/IMG_1382.jpeg" alt="Penteado ondulado com acabamento premium" loading="lazy"></div>
+      <div class="meta"><span class="name">Público</span><span class="value">Portfolio</span><p class="detail">Trabalho com presença visual forte, ideal para portfólio e referência de estilo.</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ PRODUÇÕES PREMIUM BLANCHARD ============ -->
+<section class="portfolio-showcase container" aria-labelledby="premium-showcase-title">
+  <div class="portfolio-header reveal">
+    <div>
+      <span class="label">Serviço</span>
+      <h3 class="display" id="premium-showcase-title">Produções Premium Blanchard</h3>
+    </div>
+    <div class="portfolio-price">R$ 1.150 · Espaço / R$ 1.400 · Domicílio</div>
+  </div>
+  <div class="portfolio-grid">
+    <article class="portfolio-card is-wide reveal-img">
+      <div class="media"><img style="--pos:50% 30%" src="../assets/producao_premium/IMG_0355.jpeg" alt="Produção premium de beleza em ambiente externo" loading="lazy"></div>
+      <div class="meta"><span class="name">Produção</span><span class="value">Premium</span><p class="detail">Visual com direção editorial e acabamento alinhado à estética da marca.</p></div>
+    </article>
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 25%" src="../assets/producao_premium/IMG_0588.jpeg" alt="Retrato premium com acabamento cinematográfico" loading="lazy"></div>
+      <div class="meta"><span class="name">Retrato</span><span class="value">Cinematic</span><p class="detail">Imagem com clima marcante e presença visual forte.</p></div>
+    </article>
+    <article class="portfolio-card reveal-img">
+      <div class="media"><img style="--pos:50% 18%" src="../assets/producao_premium/IMG_0090.jpeg" alt="Produção premium com maquiagem e cabelo sofisticados" loading="lazy"></div>
+      <div class="meta"><span class="name">Beauty</span><span class="value">Versão final</span><p class="detail">Resultado completo em produção de beleza com valor visual elevado.</p></div>
+    </article>
+    <article class="portfolio-card is-portrait reveal-img">
+      <div class="media"><img style="--pos:50% 25%" src="../assets/producao_premium/IMG_0625.jpeg" alt="Produção premium com estilo editorial" loading="lazy"></div>
+      <div class="meta"><span class="name">Editorial</span><span class="value">Foco</span><p class="detail">Direção visual com esquema de luz e beleza refinada.</p></div>
+    </article>
+    <article class="portfolio-card reveal-img">
+      <div class="media"><img style="--pos:50% 30%" src="../assets/producao_premium/IMG_1470.jpeg" alt="Produção premium em enquadramento amplo" loading="lazy"></div>
+      <div class="meta"><span class="name">Ambiente</span><span class="value">Produção real</span><p class="detail">Trabalho integrado com cenário e presença do cliente da marca.</p></div>
+    </article>
+    <article class="portfolio-card is-wide reveal-img">
+      <div class="media"><img style="--pos:50% 22%" src="../assets/producao_premium/IMG_1415.jpeg" alt="Produção premium com penteado e maquiagem impecáveis" loading="lazy"></div>
+      <div class="meta"><span class="name">Resultado</span><span class="value">Total</span><p class="detail">Maquiagem, cabelo e direção visual alinhados em uma única imagem forte.</p></div>
+    </article>
+  </div>
 </section>
 
 <!-- ============ EXPERIENCES ============ -->
@@ -517,12 +695,14 @@
       <span class="label reveal">Beleza · Cabelo · Editorial</span>
     </div>
     <div class="gallery-grid">
-      <figure class="gallery-item reveal-img"><img src="../assets/makeup/IMG_1956.jpeg" alt="Maquiagem social Blanchard" loading="lazy"></figure>
-      <figure class="gallery-item reveal-img"><img src="../assets/penteados/IMG_1902.jpeg" alt="Penteado de beleza Blanchard" loading="lazy"></figure>
-      <figure class="gallery-item reveal-img"><img src="../assets/producao_premium/IMG_1718.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></figure>
-      <figure class="gallery-item reveal-img"><img src="../assets/makeup/IMG_1936.jpeg" alt="Beleza editorial Blanchard" loading="lazy"></figure>
-      <figure class="gallery-item reveal-img"><img src="../assets/producao_premium/IMG_1382.jpeg" alt="Produção premium em estúdio" loading="lazy"></figure>
-      <figure class="gallery-item reveal-img"><img src="../assets/penteados/IMG_1964.jpeg" alt="Detalhe de cabelo em produção editorial" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1956.jpeg" alt="Maquiagem social Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1813.jpeg" alt="Maquiagem editorial Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 20%" src="../assets/penteados/IMG_1902.jpeg" alt="Penteado de beleza Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 20%" src="../assets/producao_premium/IMG_1718.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 28%" src="../assets/makeup/IMG_1415.jpeg" alt="Beleza em pele madura Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 20%" src="../assets/producao_premium/IMG_1382.jpeg" alt="Produção premium em estúdio" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 25%" src="../assets/penteados/IMG_1794.jpeg" alt="Penteado volumoso Blanchard" loading="lazy"></figure>
+      <figure class="gallery-item reveal-img"><img style="--pos:50% 25%" src="../assets/producao_premium/IMG_0588.jpeg" alt="Detalhe de produção premium Blanchard" loading="lazy"></figure>
     </div>
   </div>
 </section>
@@ -582,7 +762,7 @@
 
 <!-- ============ FINAL CTA ============ -->
 <section class="final-cta">
-  <div class="img-wrap"><img src="../assets/producao_premium/IMG_0588.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></div>
+  <div class="img-wrap"><img style="--pos:50% 25%" src="../assets/producao_premium/IMG_0588.jpeg" alt="Produção fotográfica Blanchard" loading="lazy"></div>
   <div class="final-cta-content">
     <h2 class="display reveal">Sua próxima produção começa aqui.</h2>
     <p class="reveal">Agende seu atendimento e descubra a experiência Blanchard.</p>
@@ -608,6 +788,7 @@
       name: "Maquiagem",
       description: "Maquiagem personalizada para seus traços, identidade, estilo e ocasião.",
       image: "../assets/makeup/IMG_1960.jpeg",
+      pos: "50% 28%",
       alt: "Maquiagem profissional com acabamento editorial",
       price: "R$ 500 no espaço · R$ 550 a domicílio"
     },
@@ -615,6 +796,7 @@
       name: "Penteados",
       description: "Um desenho personalizado para complementar a maquiagem e a ocasião.",
       image: "../assets/penteados/IMG_1794.jpeg",
+      pos: "50% 25%",
       alt: "Penteado de beleza em produção editorial",
       price: "R$ 300 no espaço · R$ 350 a domicílio"
     },
@@ -623,6 +805,7 @@
       status: "Serviço a confirmar",
       description: "Confirmar com o cliente se é babyliss, penteado, ensaio ou outro serviço.",
       image: "../assets/penteados/IMG_1902.jpeg",
+      pos: "50% 20%",
       alt: "Produção de cabelo usada como referência provisória para o serviço Baby"
     },
     {
@@ -630,6 +813,7 @@
       status: "Estilo a confirmar",
       description: "Confirmar o estilo de ondas desejado e atualizar esta descrição com o cliente.",
       image: "../assets/producao_premium/IMG_1933.jpeg",
+      pos: "50% 25%",
       alt: "Produção de beleza com cabelo modelado em ondas",
       price: "R$ 200 no espaço · R$ 250 a domicílio"
     },
@@ -637,6 +821,7 @@
       name: "Pacote Premium",
       description: "Maquiagem, cabelo, produção fotográfica, 12 fotos tratadas e um Fashion Film.",
       image: "../assets/producao_premium/IMG_0355.jpeg",
+      pos: "50% 30%",
       alt: "Produção de beleza premium com fotografia editorial",
       price: "R$ 1.150 no espaço · R$ 1.400 a domicílio"
     }
@@ -645,7 +830,7 @@
   var servicesGrid = document.getElementById('servicesGrid');
   servicesGrid.innerHTML = services.map(function(service){
     return '<article class="service-card">' +
-      '<div class="service-card-media"><img src="' + service.image + '" alt="' + service.alt + '" loading="lazy" decoding="async"></div>' +
+      '<div class="service-card-media"><img style="--pos:' + (service.pos || '50% 30%') + '" src="' + service.image + '" alt="' + service.alt + '" loading="lazy" decoding="async"></div>' +
       '<div class="service-card-body">' +
         (service.status ? '<span class="service-card-status">' + service.status + '</span>' : '') +
         '<h3>' + service.name + '</h3>' +
@@ -726,13 +911,39 @@
       var rect = img.closest('section').getBoundingClientRect();
       if(rect.bottom > 0 && rect.top < window.innerHeight){
         var offset = (window.scrollY - img.closest('section').offsetTop) * 0.08;
-        img.style.transform = 'translateY(' + Math.max(-40, Math.min(40, offset)) + 'px) scale(1.12)';
+        img.style.transform = 'translate3d(0,' + Math.max(-40, Math.min(40, offset)) + 'px,0)';
       }
     });
   }
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     window.addEventListener('scroll', onScroll, {passive:true});
   }
+
+  // Auto-fit: se a moldura cortaria mais que MAX_LOSS da foto, mostra a foto inteira (sem distorcer) sobre fundo desfocado
+  (function(){
+    var MAX_LOSS = 0.20;
+    var frames = document.querySelectorAll('.service-card-media, .portfolio-card .media, .gallery-item');
+    function evaluate(frame){
+      var img = frame.querySelector('img');
+      if(!img || !img.naturalWidth || !frame.clientHeight) return;
+      var fr = frame.clientWidth / frame.clientHeight;
+      var ir = img.naturalWidth / img.naturalHeight;
+      var loss = 1 - Math.min(fr, ir) / Math.max(fr, ir);
+      var contain = loss > MAX_LOSS;
+      if(contain) frame.style.setProperty('--bg', 'url("' + (img.currentSrc || img.src) + '")');
+      frame.classList.toggle('fit-contain', contain);
+    }
+    frames.forEach(function(frame){
+      var img = frame.querySelector('img');
+      if(!img) return;
+      if(img.complete) evaluate(frame); else img.addEventListener('load', function(){ evaluate(frame); });
+    });
+    var t;
+    window.addEventListener('resize', function(){
+      clearTimeout(t);
+      t = setTimeout(function(){ frames.forEach(evaluate); }, 150);
+    });
+  })();
 
   // Header contrast handling not needed (mix-blend-mode:difference handles it)
 </script>
